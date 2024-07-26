@@ -139,7 +139,7 @@ createSqlitePool ::
   -- | number of connections to open
   Int ->
   m (Pool Sqlite)
-createSqlitePool s connCount = liftIO $ newPool $ PoolConfig (open' s) close' 20 connCount
+createSqlitePool s connCount = liftIO $ newPool $ defaultPoolConfig (open' s) close' 20 connCount
 
 instance Savepoint Sqlite where
   withConnSavepoint name m (Sqlite c _) = do
